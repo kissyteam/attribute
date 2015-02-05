@@ -1,8 +1,4 @@
-/*
-Copyright 2014, modulex-attribute@1.0.2
-MIT Licensed
-build time: Thu, 16 Oct 2014 04:37:46 GMT
-*/
+//! Copyright 2015, kissy-attribute@1.0.5 MIT Licensed, build time: Thu, 05 Feb 2015 05:39:46 GMT 
 modulex.add("attribute", ["modulex-util","modulex-event-custom"], function(require, exports, module) {
 var modulexUtil = require("modulex-util");
 var modulexEventCustom = require("modulex-event-custom");
@@ -202,7 +198,7 @@ attribute = function (exports) {
     // initial attr
     initAttrs(self, config);
   }
-  Attribute.version = '1.0.2';
+  Attribute.version = '1.0.5';
   function wrapProtoForSuper(px, SubClass) {
     var hooks = SubClass.__hooks__;
     // in case px contains toString
@@ -589,7 +585,7 @@ attribute = function (exports) {
     return undefined;
   }
   exports = Attribute;
-  Attribute.version = '1.0.2';
+  Attribute.version = '1.0.5';
   return exports;
 }();
 module.exports = attribute;
