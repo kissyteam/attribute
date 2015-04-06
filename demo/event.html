@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>event demo</title>
+    <script src="//g.alicdn.com/kissy/k/6.0.0/seed-min.js" charset="utf-8" data-config="{combine:true}"></script>
+</head>
+<body>
+<h2>event demo</h2>
+<script>
+    KISSY.add('demo',function(S,require,exports, module){
+        var Base = require('base');
+        var $ = require('node').all;
+        var Demo = Base.extend({
+            initializer: function(){
+
+            }
+        },{
+            ATTRS:{
+                name: {
+                    value: '明河',
+                    setter: function(v){
+                        $('body').append('<p>name:'+v+'</p>');
+                        return v;
+                    }
+                }
+            }
+        });
+        //将类暴露出去给外部使用
+        module.exports = Demo;
+    });
+    KISSY.use('demo,node',function(S,Demo,Node){
+        var $ = Node.all;
+        var demo = new Demo();
+        demo.on('beforeNameChange',function(ev){
+            $('body').append('<h2>beforeNameChange:</h2>');
+            $('body').append('<p>ev.newVal:'+ev.newVal+'</p>');
+            $('body').append('<p>ev.prevVal:'+ev.prevVal+'</p>');
+            $('body').append('<p>ev.attrName:'+ev.attrName+'</p>');
+        });
+        demo.on('afterNameChange',function(ev){
+            $('body').append('<h2>afterNameChange:</h2>');
+            $('body').append('<p>ev.newVal:'+ev.newVal+'</p>');
+            $('body').append('<p>ev.prevVal:'+ev.prevVal+'</p>');
+            $('body').append('<p>ev.attrName:'+ev.attrName+'</p>');
+        });
+
+        demo.set('name','剑平');
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>setter demo</title>
+    <script src="//g.alicdn.com/kissy/k/6.0.0/seed-min.js" charset="utf-8" data-config="{combine:true}"></script>
+</head>
+<body>
+<h2>set/setter demo</h2>
+<script>
+    KISSY.add('demo',function(S,require,exports, module){
+        var Base = require('base');
+        var $ = require('node').all;
+        var Demo = Base.extend({
+            initializer: function(){
+
+            }
+        },{
+            ATTRS:{
+                name: {
+                    value: '明河',
+                    setter: function(v){
+                        $('body').append('<p>name:'+v+'</p>');
+                        return v;
+                    }
+                }
+            }
+        });
+        //将类暴露出去给外部使用
+        module.exports = Demo;
+    });
+    KISSY.use('demo,node',function(S,Demo,Node){
+        var demo = new Demo();
+        demo.set('name','剑平');
+        //value 没有变化不会重复触发,所以配置 force : true
+        demo.set('name','剑平',{force:true});
+    });
+</script>
+</body>
+</html>

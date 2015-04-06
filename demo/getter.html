@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>getter demo</title>
+    <script src="//g.alicdn.com/kissy/k/6.0.0/seed-min.js" charset="utf-8" data-config="{combine:true}"></script>
+</head>
+<body>
+<h2>get/getter demo</h2>
+<script>
+    KISSY.add('demo',function(S,require,exports, module){
+        var Base = require('base');
+        var Demo = Base.extend({
+            initializer: function(){
+
+            }
+        },{
+            ATTRS:{
+                name: {
+                    value: '明河'
+                },
+                msg:{
+                    value:'',
+                    getter: function(v){
+                        var name = this.get('name');
+                        return name + '很2';
+                    }
+                }
+            }
+        });
+        //将类暴露出去给外部使用
+        module.exports = Demo;
+    });
+    KISSY.use('demo,node',function(S,Demo,Node){
+        var $ = Node.all;
+        var demo = new Demo();
+        $('body').append('<p>name:'+demo.get('name')+'</p>')
+        $('body').append('<p>msg:'+demo.get('msg')+'</p>')
+    });
+</script>
+</body>
+</html>
