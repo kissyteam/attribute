@@ -2,7 +2,7 @@
 
 attribute 让类拥有统一的处理属性的方式，让属性拥有getter与setter方法，弥补javascript在属性处理上的不足。
 
-attribute 模板不推荐单独混入使用，有属性需求的，请使用 base 模块。
+attribute 模板不推荐单独混入使用，有属性需求的，请使用 [base](./base.html) 模块。
 
 ### 基本使用例子
 
